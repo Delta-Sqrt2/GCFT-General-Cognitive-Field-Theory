@@ -1,0 +1,118 @@
+# ============================================================
+# GCFT 仓库 .gitignore —— 学术优先性，仅保留核心代码与论文
+# ============================================================
+
+# ----- 个人信息与闲聊（严格排除，绝不上传） -----
+闲聊*.txt
+闲聊*.txt/
+*.token
+*.token.txt
+.gh_token*
+*.cookie
+*.session
+
+# ----- 开发过程文件（不上传，保留学术纯净性） -----
+开发日志.txt
+开发日志*.txt
+意义与边界*.txt
+v*_意义与边界评估.txt
+著作论文方案.txt
+论文方案.txt
+人类认知动力学统一理论实现方案*.txt
+fix_*.ps1
+fix_*.py
+append_*_log.py
+diagnose_*.py
+verify_*.py
+quick_test_*.py
+
+# ----- 临时方案版本文件（开发迭代痕迹） -----
+1.1.txt
+1.2.txt
+2.0.txt
+2.1.txt
+3.0.txt
+3.1.txt
+4.0.txt
+4.1.txt
+4.2.txt
+4.3.txt
+4.3.1.txt
+4.4.txt
+4.5.txt
+4.6.txt
+4.7.txt
+4.8.txt
+4.9.txt
+5.0.txt
+5.1.txt
+5.1之后.txt
+6.2.txt
+6.3.txt
+6.4.txt
+8qgcft.txt
+12.0.txt
+
+# ----- 临时测试脚本（开发过程文件） -----
+_*.py
+_*.txt
+_*.log
+_*.json
+t_v*.py
+test_*.py
+*_test.py
+*_output.txt
+*_test_output*.txt
+v*_output.json
+
+# ----- 子项目（独立发布，不在此仓库） -----
+subprojects/
+papers/
+papers/新建文本文档.txt
+新建文本文档.txt
+最终论文/
+
+# ----- 临时修复脚本（开发过程文件） -----
+修复*.txt
+*_复制粘贴版.txt
+*t_v*.py*
+*output_*.txt
+
+# ----- Python 缓存与构建 -----
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.eggs/
+
+# ----- 虚拟环境 -----
+venv/
+.venv/
+env/
+ENV/
+
+# ----- IDE / 编辑器 -----
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ----- 操作系统 -----
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# ----- 日志 -----
+*.log
+
+# ----- 临时大文件 -----
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
