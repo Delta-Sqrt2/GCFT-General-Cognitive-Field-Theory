@@ -12,17 +12,17 @@ v6.2 完全张量化与时间动力学验证
     任务二：非对角交叉项（在 log(g) 空间构建，保卫正定性）
     任务三：分裂相时间动力学验证（半隐式欧拉法 + 解析 Jacobian）
 
-监工暗礁防护：
-    暗礁一·Φᵢ 的还原论悖论：
+监工风险点防护：
+    风险点一·Φᵢ 的还原论悖论：
         Φᵢ 必须基于交互信息（第 i 行/列与系统其余部分），不能切成孤岛。
         Φᵢ ∝ 交互信息(g_ii ; g_jj)
 
-    暗礁二·g_ij⁴ 的正定性毁灭：
+    风险点二·g_ij⁴ 的正定性毁灭：
         交叉项必须在 log(g) 空间构建。
         h = log(g)，S_cross = Σ ξᵢⱼ hᵢⱼ²
         g = exp(h) 永远正定。
 
-    暗礁三·隐式求解器的 Jacobian 瘫痪：
+    风险点三·隐式求解器的 Jacobian 瘫痪：
         必须提供解析 Jacobian 或使用半隐式欧拉法。
         对刚性项（κ 相关）隐式，对非刚性项（ρ, 消解）显式。
 
@@ -77,9 +77,9 @@ class TensorDynamicsV62(TensorParameterDynamics):
         trajectory = td.time_evolve(g_init, C, phi, kappa_vec, alpha_vec, n_steps=1000)
 
     白盒保证：
-        - Φᵢ 基于交互信息（第 i 行/列），不是孤岛（暗礁一防范）
-        - 交叉项在 log(g) 空间构建，正定性永远保持（暗礁二防范）
-        - 半隐式欧拉法 + 小步长，稳定性优先（暗礁三防范）
+        - Φᵢ 基于交互信息（第 i 行/列），不是孤岛（风险点一防范）
+        - 交叉项在 log(g) 空间构建，正定性永远保持（风险点二防范）
+        - 半隐式欧拉法 + 小步长，稳定性优先（风险点三防范）
     """
 
     def __init__(
@@ -100,7 +100,7 @@ class TensorDynamicsV62(TensorParameterDynamics):
         """
         计算局部 Φᵢ（基于交互信息）。
 
-        暗礁一防护：Φᵢ 必须基于交互信息，不能切成孤岛。
+        风险点一防护：Φᵢ 必须基于交互信息，不能切成孤岛。
 
         数学：
             提取度规第 i 行 g[i,:]（维度 i 对所有维度的影响力）
@@ -240,7 +240,7 @@ class TensorDynamicsV62(TensorParameterDynamics):
         """
         计算对数度规 h = log(g)。
 
-        暗礁二防护：在 log(g) 空间构建交叉项，保证正定性。
+        风险点二防护：在 log(g) 空间构建交叉项，保证正定性。
 
         通过特征分解：g = Q Λ Q^T → h = Q log(Λ) Q^T
         """
@@ -286,7 +286,7 @@ class TensorDynamicsV62(TensorParameterDynamics):
         S_cross = Σ_{i≠j} ξᵢⱼ · hᵢⱼ²
         其中 h = log(g)。
 
-        暗礁二防护：在 log(g) 空间构建，正定性永远保持。
+        风险点二防护：在 log(g) 空间构建，正定性永远保持。
         """
         g = g_batch.to(torch.float64)
         N, d, _ = g.shape
@@ -370,7 +370,7 @@ class TensorDynamicsV62(TensorParameterDynamics):
         """
         时间演化一步（半隐式欧拉法）。
 
-        暗礁三防护：对刚性项（∂S/∂g）用小步长隐式更新，对消解项显式更新。
+        风险点三防护：对刚性项（∂S/∂g）用小步长隐式更新，对消解项显式更新。
 
         dg/dt = -∂S/∂g - diag(μ̂_ρ ⊙ ρ̂) · (g - g_iso)
 
@@ -411,7 +411,7 @@ class TensorDynamicsV62(TensorParameterDynamics):
         g_new = g - dt * total_grad
         g_new = 0.5 * (g_new + g_new.transpose(-2, -1))
 
-        # === 正定性保护（暗礁二防范）===
+        # === 正定性保护（风险点二防范）===
         for n in range(N):
             try:
                 eigvals = torch.linalg.eigvalsh(g_new[n])
