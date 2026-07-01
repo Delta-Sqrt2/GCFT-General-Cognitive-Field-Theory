@@ -4,7 +4,7 @@ A rigorous mathematical derivation of consciousness and the observer problem usi
 
 通过使用非交换几何、范畴论和量子场论对意识与观察者问题进行严格的数学推导。本仓库包含完整的五卷手稿以及核心定理的验证代码。所有数学结构均表述为可证伪的物理假说。
 
-**从几何动力学到量子拓扑的本体论统一 | From Geometric Dynamics to Quantum Topological Ontological Unification**
+**From Geometric Dynamics to Quantum Topological Ontological Unification | 从几何动力学到量子拓扑的本体论统一**
 
 ---
 
