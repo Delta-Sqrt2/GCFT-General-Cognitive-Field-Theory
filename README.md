@@ -8,6 +8,14 @@ A rigorous mathematical derivation of consciousness and the observer problem usi
 
 ---
 
+**Keywords | 关键词**
+
+mathematical-physics · consciousness-studies · noncommutative-geometry · quantum-cognition · complex-systems · foundations-of-physics · category-theory · falsifiable-theory · open-science · general-cognitive-field-theory · gcft
+
+数学物理 · 意识研究 · 非对易几何 · 量子认知 · 复杂系统 · 物理学基础 · 范畴论 · 可证伪理论 · 开放科学 · 广义认知场论 · GCFT
+
+---
+
 ## Academic Priority Statement | 学术优先性声明
 
 本仓库以学术发表标准维护。仅包含理论的核心数学验证代码与正式论文文本，开发过程的工程痕迹（迭代日志、临时脚本、闲聊草稿）已在仓库层排除。所有涉及人格样本的个人身份信息均已严格脱敏，仅以匿名样本（样本 L / M / S / Z / W）的形式作为相空间中不同吸引子的参数化示例。
